@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  user:
+    image: node:10
+    tty: true
+    volumes:
+      - ./user-service:/app:delegated
+    working_dir: /app
+    command: bash -c "yarn start:dev"
+  
+  gateway:
+    image: node:10
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./gateway:/app:delegated    
+    working_dir: /app
+    command: bash -c "yarn start:dev"
